@@ -1,10 +1,13 @@
 import React from "react";
 
-function ToyCard( { toy } ) {
+function ToyCard( { handleDeleteToy, key, toy } ) {
   const {id, name, image, likes} = toy
 
-  const deleteToy = () => {
-    console.log('make this work')
+  function handleDeleteClick(){
+    fetch(`http://localhost:4000/toys/${id}`, {
+      method: 'DELETE',
+    });
+    handleDeleteToy(id)
   }
 
   return (
@@ -17,7 +20,7 @@ function ToyCard( { toy } ) {
       />
       <p>{likes} Likes </p>
       <button className="like-btn">Like {"<3"}</button>
-      <button id={id} onClick={deleteToy} className="del-btn">Donate to GoodWill</button>
+      <button onClick={handleDeleteClick} className="del-btn">Donate to GoodWill</button>
     </div>
   );
 }

@@ -9,7 +9,7 @@ function App() {
   const [toys, setToys] = useState([])
 
   useEffect(() => {
-    fetch('http://localhost:3001/toys')
+    fetch('http://localhost:4000/toys')
     .then((res) => res.json())
     .then((toyData) => setToys(toyData))
   }, [])
@@ -22,6 +22,11 @@ function App() {
     setShowForm((showForm) => !showForm);
   }
 
+  function handleDeleteToy(id){
+    const newToys = toys.filter((toy) => toy.id != id)
+    setToys(newToys)
+  }
+
   return (
     <>
       <Header />
@@ -29,7 +34,7 @@ function App() {
       <div className="buttonContainer">
         <button onClick={handleClick}>Add a Toy</button>
       </div>
-      <ToyContainer toys={toys}/>
+      <ToyContainer handleDeleteToy={handleDeleteToy} toys={toys}/>
     </>
   );
 }

@@ -14,7 +14,7 @@ function ToyForm({ addNewToy }) {
     <div className="container">
       <form
         onSubmit={() => {
-          fetch("http://localhost:3001/toys", {
+          fetch("http://localhost:4000/toys", {
             method: "POST",
             headers: {
               Accept: "application/json",
